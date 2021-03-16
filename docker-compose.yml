@@ -1,0 +1,22 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3000"
+    volumes:
+      # We're mapping these vols for dev use only
+      - /home/node/app/node_modules
+      - .:/home/node/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      # We're mapping these vols for tests use only
+      - /home/node/app/node_modules
+      - .:/home/node/app
+    # Override image default command (was: npm run start)
+    command: ["npm", "run", "test"]
