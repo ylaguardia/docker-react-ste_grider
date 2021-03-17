@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true ylaguardia/docker-react-ste_grider npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-ste_grider"
+  env: "Dockerreactstegrider-env"
+  bucket_name: "elasticbeanstalk-us-east-1-193084689328"
+  bucket_path: "docker-react-ste_grider"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
