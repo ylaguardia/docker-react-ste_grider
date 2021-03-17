@@ -8,10 +8,10 @@ FROM node:alpine
 WORKDIR '/home/node/app'
 
 # Fix permissions for 'node' user before copying
-COPY --chown=node:node package.json .
+COPY --chown=node:node package*.json ./
 RUN npm install
 
-COPY --chown=node:node . .
+COPY --chown=node:node ./ ./
 
 RUN npm run build
 
