@@ -18,6 +18,9 @@ RUN npm run build
 
 # RUN phase
 FROM nginx
+# Expose shouldn't do anything besides serbe as documentation for us
+# but aws elastic beanstalk makes use of it to open the ports
+EXPOSE 80
 
 # Copy over the result of 'npm run build' in the BUILD phase
 COPY --from=0 /home/node/app/build /usr/share/nginx/html
